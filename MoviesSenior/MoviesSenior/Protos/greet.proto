@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "MoviesSenior";
+
+package greet;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc MoviesData (MovieRequest) returns (MovieReply);
+}
+
+message MovieRequest {
+  string name = 1;
+}
+message MovieReply {
+    string movies = 1;
+    string dataResult = 2;
+}

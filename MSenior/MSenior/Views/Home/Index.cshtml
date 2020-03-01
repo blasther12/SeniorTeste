@@ -1,0 +1,80 @@
+﻿@using MSenior.Models
+@{
+    ViewData["Title"] = "Home Page";
+    List<Movies> movies = ViewBag.movies;
+    DataResult dataResults = ViewBag.dataResults;
+}
+
+<div class="text-center">
+    <form class="form-inline md-form mr-auto mb-4" action="Home/Search" method="post">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="label">
+        <button class="btn btn-outline-info" type="submit">Buscar Filme</button>
+    </form>
+    @if (movies != null)
+    {
+        <div style="max-height:200px; overflow-y:auto;">
+
+            <table class="table table-responsive-lg table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">
+                            Year
+                        </th>
+                        <th style="text-align:center;">
+                            Movies
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    @foreach (var stm in dataResults.moviesByYears)
+                    {
+                        <tr>
+                            <td>
+                                @stm.year
+                            </td>
+                            <td style="text-align:center;">
+                                @stm.movies
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div style="max-height:500px; overflow-y:auto;">
+
+            <table class="table table-responsive-lg table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align:center;">
+                            Movie
+                        </th>
+                        <th style="text-align:center;">
+                            Year
+                        </th>
+                        <th style="text-align:center;">
+                            Imdb Id
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    @foreach (var stm in movies)
+                    {
+                        <tr>
+                            <td>
+                                @stm.Title
+                            </td>
+                            <td style="text-align:center;">
+                                @stm.Year
+                            </td>
+                            <td style="text-align:center;">
+                                @stm.imdbID
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="form-control" style="background-color:darkmagenta"><b style="color:white">Resultado Total: @dataResults.total</b></div>
+    }
+</div>
